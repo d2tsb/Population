@@ -5,7 +5,7 @@
 #define illegalStateExcetion 90
 #define CERR(x) std::cerr << x << std::endl; 
 
-#define DEFAULTSTEPSIZE 1000
+#define DEFAULTSTEPSIZE 50
 template <typename T> //its keyproperty is that it's data is unique.
 class Vector 
 {

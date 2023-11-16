@@ -49,6 +49,11 @@ void test()
   d[8].print(); 
   d[8].fill("lol");
   d[8].print(); 
+  for ( unsigned i = 0; i<2000; i++)
+  {
+    d.push_back({"bla", "bla", "bla", "bla"});
+  }
+  std::cout << "capacity of d: " << d.getCapacity() << std::endl; 
 }
 
 
