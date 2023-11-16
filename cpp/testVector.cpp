@@ -37,6 +37,18 @@ void test()
   std::cout << "size of b after resize(10): " << b.getSize() << std::endl; 
   std::cout << b[9] << std::endl ;
 
+  Vector<Vector<std::string>> d( {{"I'm the first sentence."}, {"hello", "i'm ", " the ", " second ", "sentence"}});
+  d[0].print(); 
+  d[1].print(); 
+  
+  d.resize(9);
+  std::cout << "capacity of d: " << d.getCapacity() << std::endl; 
+  d.fill(Vector<std::string> ({"hi, i'm the filler. ", "i fill the booth"}));
+  d[4].print();
+  d[8] = Vector<std::string> ({ "i m", " the 8th element. "});
+  d[8].print(); 
+  d[8].fill("lol");
+  d[8].print(); 
 }
 
 

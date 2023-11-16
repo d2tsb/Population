@@ -6,7 +6,7 @@
 #define CERR(x) std::cerr << x << std::endl; 
 
 #define DEFAULTSTEPSIZE 1000
-template <typename T>
+template <typename T> //its keyproperty is that it's data is unique.
 class Vector 
 {
 
@@ -15,7 +15,7 @@ class Vector
   //a size of 0 contains no elements, a size of 1 contains 1 elements, and a size of N contains n elements.
   T * data__ = NULL; 
   unsigned stepSize = DEFAULTSTEPSIZE; // >= 20
-  void copyFromAToB(T*A, T*B, unsigned amount) noexcept
+  void copyFromAToB(T*A, T*B, unsigned amount) const noexcept
   {
     for (unsigned i = 0; i < amount; i++)
     {
@@ -58,7 +58,7 @@ class Vector
   {
     data__ = new T[capacity__]; 
   }
-  T* copy(){
+  T* copy()const{
     T * temp; 
     try
     {
@@ -229,7 +229,7 @@ class Vector
     {
       shrink(l.size());
       unsigned i = 0; 
-      for ( auto & value : l) 
+      for ( auto &value : l) 
       {
         this->data__[i] = value;
         i++;
@@ -255,14 +255,14 @@ class Vector
     {
       shrink(0);
     }
-    Vector(Vector&other)
+    Vector(const Vector&other)
     {
       this->capacity__ = other.capacity__; 
       this->size__ = other.size__; 
       this->stepSize = other.stepSize; 
       this->data__ = other.copy(); 
     }
-    Vector& operator = (Vector &other)
+    Vector& operator = (const Vector &other)
     {
       Vector temp(other);
       std::swap(temp.capacity__, this->capacity__);
@@ -278,12 +278,13 @@ class Vector
     }
 
 
-    T operator [] (unsigned i)
+    T & operator [] (unsigned i)
     {
       if ( i < size__)
       {
         return data__[i];
       }
-      return T(); 
+      CERR("In Vector.[]: Index i is out of bound. i: " << i)
+      throw DEFAULTSTEPSIZE; 
     }
 };
