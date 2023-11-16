@@ -9,13 +9,15 @@
 
 class field
 {
-  std::vector<std::vector<AgentCluster>> Field;
+  private:
+    int x_max = BORDER_X_MAX;
+    int x_min = BORDER_X_MIN;
+    int y_max = BORDER_Y_MAX;
+    int y_min = BORDER_Y_MIN;
+    long iteration = 0;
+    std::vector<std::vector<AgentCluster>> Field;
   public: 
-  int x_max = BORDER_X_MAX;
-  int x_min = BORDER_X_MIN;
-  int y_max = BORDER_Y_MAX;
-  int y_min = BORDER_Y_MIN;
-  long iteration = 0;
+
 
   // get highest averageGrade / Grade median
   // update
@@ -28,16 +30,31 @@ class field
     this->x_min = xMin;
     this->y_max = yMax;
     this->y_max = yMin;
-    std::cout << "i don't understand why you dont work . " << std::endl; 
+    std::cout << "i don't understand why you dont work .askidjalks " << std::endl; 
     try
     {
-      Field.reserve(x_max);
-        std::vector<AgentCluster> temp(y_max);
-    std::cout << "i don't understand why you dont work helloaosoooooo ?  . " << std::endl; 
+
+      std::vector<std::vector<AgentCluster>> temp ( x_max ); //, 
+            //std::vector <AgentCluster> (y_max)); // does not work
+      std::cout << temp.size() << std::endl; 
+
       for (unsigned i = 0; i < x_max; i++)
       {
-        Field[i] = temp; 
+        std::vector <AgentCluster> temp_inner;
+        temp_inner.reserve(20); 
+        std::cout << "capacity: " << temp_inner.capacity() << std::endl; 
+
+        for (unsigned j = 0; j < y_max; j++)
+        {
+          temp_inner.push_back(AgentCluster());
+        }
+        std::cout << temp_inner.size() << std::endl; 
+        temp.push_back(temp_inner);
       }
+      
+      
+  // std::cout << "i don't understand why you dont work helloaosoooooo ?  . " << std::endl; 
+
       /*
       
       
