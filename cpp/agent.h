@@ -1,7 +1,6 @@
 #include "defines.h"
 #include <random>
 #include <cmath>
-#include "TUI.h"
 
 
 struct position

@@ -4,11 +4,21 @@
 int main () 
 {
   Stopwatch sw; 
-  sw.reset(); 
   GUI x;
+  sw.reset(); 
   sw.start();
-  x.emptyCanvas(); 
+  x.clearAll();
+  //x.emptyCanvas(); 
   sw.finish();
-  sw.print_duration_in_milliseconds(); 
+  std::cout << std::endl; 
+  //std::cout << "time of emptyCanvas" << std::endl; 
+  //sw.print_duration_in_milliseconds(); 
+
+  // sw.reset(); 
+  // sw.start();
+  // x.emptyCanvasEvenFaster(); 
+  // sw.finish();
+  // sw.print_duration_in_milliseconds(); 
+
 
 }

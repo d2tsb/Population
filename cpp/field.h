@@ -1,5 +1,5 @@
-#include "agentcluster.h"
 #include <ctime>
+#include "GUI.h"
 
 #define INDEXOUTOFBOUNDEXCEPTION 89
 
@@ -82,24 +82,27 @@ public:
 
   void TUI_LOOP(unsigned updateRateInMillsecs = 1000)
   {
+    GUI x; 
+    x.clearAll();
+    x.emptyCanvas();
     for (;;)
     {
       update();
       Sleep(updateRateInMillsecs);
 
       // clear terminal
-      clearScreen();
       // write title - or description
       // print results.
-      for (int i = 0; i < Field.getSize(); i++)
-      {
-        for (int j = 0; j < Field[i].getSize(); j++)
-        {
-          this->Field[i][j].printAgentClusterState();
-        }
-        std::cout << std::endl;
-      }
-      std::cout << std::endl;
+      //   for (int i = 0; i < Field.getSize(); i++)
+      //   {
+      //     for (int j = 0; j < Field[i].getSize(); j++)
+      //     {
+      //       this->Field[i][j].printAgentClusterState();
+      //     }
+      //     std::cout << std::endl;
+      //   }
+      //   std::cout << std::endl;
+      x.printField(this->Field);
     }
   }
 };
