@@ -223,23 +223,19 @@ class Agent //typical Agent in the Population Game
       switch (rolled)
       {
         case NORTH:
-          ++pos_y;  
-          pos_y > BORDER_Y_MAX ? --pos_y & reset() : pos_y; 
+          pos_y == (BORDER_Y_MAX - 1) ? reset() : ++pos_y; 
           this->last_direction = NORTH; 
           break; 
         case SOUTH:
-          --pos_y;  
-          pos_y < BORDER_Y_MIN ? ++pos_y & reset() : pos_y; 
+          pos_y == BORDER_Y_MIN ? reset() : --pos_y; 
           this->last_direction = SOUTH; 
           break; 
         case WEST:
-          --pos_x;  
-          pos_x > BORDER_X_MAX ? --pos_x & reset() : pos_x; 
+          pos_x == (BORDER_X_MAX-1) ? reset() : ++pos_x; 
           this->last_direction = WEST; 
           break; 
         case EAST:
-          ++pos_x;  
-          pos_x < BORDER_X_MIN ? --pos_x & reset() : pos_x; 
+          pos_x == BORDER_X_MIN ? reset() : --pos_x;
           this->last_direction = EAST; 
           break; 
         default:

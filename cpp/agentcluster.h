@@ -93,6 +93,7 @@ public:
   {
     // Float QuantityRatio = this->getQuantity() / MAXQUANTITY;
     unsigned GradeAverage = ((unsigned)this->getGradeMedian());
+    //std::cout << amountOfAgents();
     std::cout << GradeAverage;
     /*
     if (GradeAverage < 5)
