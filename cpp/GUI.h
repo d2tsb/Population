@@ -84,6 +84,8 @@ public:
     res[pos] = '\0';
 
     printf(res);
+    //fflush(stdout);
+    //write(1, res, pos);
     delete[] res;
   }
 
@@ -105,16 +107,43 @@ public:
   void printField(Vector<Vector<AgentCluster>> v)
   {
     std::ostringstream result;
+    //result << "\x1b[38;2;120;0;90m";
     for (unsigned i = 0; i < x_dim; i++)
     {
       result << "\x1b[" << i << ";" << 0 << "f";
       for (unsigned j = 0; j < y_dim; j++)
       {
-        result << v[i][j].amountOfAgents();
+        result << "\x1b[38;2;20;" << v[i][j].amountOfAgents() * 80 << ";90m";
+        //result << "\x1b[38;2;20;" << (unsigned) v[i][j].getGradeMedian() * 80 << ";90m";
+        //result << "\x1b[38;2;" <<  v[i][j].amountOfAgents() * 80  << ";" << (unsigned) v[i][j].getGradeMedian() * 80 << ";90m";
+        //result << (unsigned )v[i][j].amountOfAgents();
+        //result << '_';
+        result << "#";
         result << "\x1b[" << i << ";" << j << "f";
       }
     }
     printf(result.str().c_str());
+
+  }
+  void LprintField(Vector<Vector<AgentCluster>> v)
+  {
+    std::wstringstream result;
+    //result << "\x1b[38;2;120;0;90m";
+    for (unsigned i = 0; i < x_dim; i++)
+    {
+      result << "\x1b[" << i << ";" << 0 << "f";
+      for (unsigned j = 0; j < y_dim; j++)
+      {
+        result << "\x1b[38;2;20;" << v[i][j].amountOfAgents() * 80 << ";90m";
+        //result << "\x1b[38;2;20;" << (unsigned) v[i][j].getGradeMedian() * 80 << ";90m";
+        //result << "\x1b[38;2;" <<  v[i][j].amountOfAgents() * 80  << ";" << (unsigned) v[i][j].getGradeMedian() * 80 << ";90m";
+        //result << (unsigned )v[i][j].amountOfAgents();
+        //result << '_';
+        result << L"\u25A0";
+        result << "\x1b[" << i << ";" << j << "f";
+      }
+    }
+    wprintf(result.str().c_str());
 
   }
 };
