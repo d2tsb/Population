@@ -1,7 +1,7 @@
 
 #include "Vector.h"
 
-void test()
+void test() //verbose test
 {
   Vector<std::string> a({"hello ", "what's", " up. "});
   a.print();

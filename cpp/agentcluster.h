@@ -1,23 +1,24 @@
 #include "agent.h"
-
+#include "Vector.h"
 
 class AgentCluster
 
 {
 
-  private: 
-   std::vector<Agent> agents; 
-  public: 
+private:
+  Vector<Agent> agents;
 
-  //cycle:
-  //update weights,   //move and store last direction made
-  // 
-  void updateWeights(){
-    for ( unsigned i = 0; i < agents.size(); i++ )
+public:
+  // cycle:
+  // update weights,   //move and store last direction made
+  //
+  void updateWeights()
+  {
+    for (unsigned i = 0; i < agents.getSize(); i++)
     {
-      for ( unsigned j = 0; j < agents.size(); j++ )
+      for (unsigned j = 0; j < agents.getSize(); j++)
       {
-        if ( j != i)
+        if (j != i)
         {
           agents[i].incrementGrade(agents[j].getGrade(), agents[j].getLastDirection());
         }
@@ -26,128 +27,108 @@ class AgentCluster
   }
   void makeMove()
   {
-    for ( unsigned i = 0; i < agents.size(); i++)
-      this->agents[i].makeMove(); //will store last move made.
+    for (unsigned i = 0; i < agents.getSize(); i++)
+      this->agents[i].makeMove(); // will store last move made.
   }
 
-  Float getQuantity() 
+  void fill(unsigned quantity, unsigned pos_x, unsigned pos_y)
   {
-    return this->agents.size(); 
+    agents.resize(quantity);
+    agents.fill(Agent(pos_x, pos_y));
   }
-  Float getGradeMedian() 
+
+
+  Float getQuantity()
   {
-    Float res = 0; 
-    for ( unsigned i = 0; i < agents.size(); i++)
+    return this->agents.getSize();
+  }
+  Float getGradeMedian()
+  {
+    Float res = 0;
+    for (unsigned i = 0; i < agents.getSize(); i++)
     {
-      res += agents[i].getGrade(); 
+      res += agents[i].getGrade();
     }
-    return res / (this->getQuantity() == 0) ? 1 : this->getQuantity(); 
+    return res / (this->getQuantity() == 0) ? 1 : this->getQuantity();
   }
 
-  void remove(unsigned index)
-  {
-
-
-  }
+  void remove(unsigned index);
   AgentCluster()
   {
-    std::cout << "I m made." << std::endl; 
-
+    //std::cout << "I m made." << std::endl;
   }
 
-  AgentCluster ( const unsigned N )
+  AgentCluster(const unsigned N)
   {
-
-    std::cout << "I m madddqawsdasdasde 2." << std::endl; 
     try
     {
-      /* code */
-    this->agents.reserve(20);
+      this->agents.reserve(N);
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
       std::cerr << e.what() << '\n';
     }
-    
-    /*
-    
-
-     for ( unsigned i = 0; i < N; i++)
-    {
-      this->agents.push_back(Agent(0));
-    }
-
-    
-    */
-     }
-
+  }
 
   Agent getBack()
   {
-    return this->agents.back(); 
+    return this->agents.last();
   }
-
   void PopBack()
   {
-    this->agents.pop_back(); 
+    this->agents.pop_back();
   }
 
+
+  unsigned amountOfAgents()
+  {
+    return this->agents.getSize(); 
+  }
   void PushBack(Agent a)
   {
-    this->agents.push_back(a); 
+    this->agents.push_back(a);
   }
-
-
 
   void printAgentClusterState()
   {
-    //Float QuantityRatio = this->getQuantity() / MAXQUANTITY; 
-    unsigned GradeAverage = ((unsigned) this->getGradeMedian()) ; 
-
-    
-    if ( GradeAverage < 5)
+    // Float QuantityRatio = this->getQuantity() / MAXQUANTITY;
+    unsigned GradeAverage = ((unsigned)this->getGradeMedian());
+    std::cout << GradeAverage;
+    /*
+    if (GradeAverage < 5)
     {
       setTextColor(BLUE_TXT);
       wprintf(L"\u2588");
     }
-    else if (GradeAverage < 10) {
+    else if (GradeAverage < 10)
+    {
       setTextColor(CYAN_TXT);
       wprintf(L"\u2588");
- 
-
     }
 
-    else if (GradeAverage < 20) {
-     setTextColor(GREEN_TXT);
+    else if (GradeAverage < 20)
+    {
+      setTextColor(GREEN_TXT);
       wprintf(L"\u2588");
- 
-
-
     }
-    else if (GradeAverage < 40) {
-     setTextColor(YELLOW_TXT);
+    else if (GradeAverage < 40)
+    {
+      setTextColor(YELLOW_TXT);
       wprintf(L"\u2588");
- 
-
     }
-    else if (GradeAverage < 80) {
+    else if (GradeAverage < 80)
+    {
 
-     setTextColor(MAGENTA_TXT);
+      setTextColor(MAGENTA_TXT);
       wprintf(L"\u2588");
- 
     }
-    else if (GradeAverage > 100) {
-     setTextColor(RED_TXT);
+    else if (GradeAverage > 100)
+    {
+      setTextColor(RED_TXT);
       wprintf(L"\u2588");
- 
-
     }
 
-      resetColor(); 
-
-
-
-
-
+    resetColor();
+  */
   }
 };

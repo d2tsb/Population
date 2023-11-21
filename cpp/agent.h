@@ -271,6 +271,11 @@ class Agent //typical Agent in the Population Game
       return position(pos_x, pos_y);
     }
 
+    Agent(int x, int y)
+    {
+      this->pos_x = x; 
+      this->pos_y = y; 
+    }
     Agent(int w)
     {}
     Agent()

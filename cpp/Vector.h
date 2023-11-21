@@ -3,6 +3,7 @@
 
 #define illegalArgumentException 89 
 #define illegalStateExcetion 90
+#define indexOutOfBoundsException 91
 #define CERR(x) std::cerr << x << std::endl; 
 
 #define DEFAULTSTEPSIZE 50
@@ -100,6 +101,7 @@ class Vector
         }
         catch(const std::exception& e)
         {
+          CERR("In Vector.resize(): Allocation failure or something relateable.")
           std::cerr << e.what() << '\n';
         }
       }
@@ -193,7 +195,7 @@ class Vector
       throw illegalStateExcetion; 
 
     }
-    void last()
+    T last()
     {
       if (size__)
         return data__[size__-1];
@@ -215,6 +217,14 @@ class Vector
         this->data__[i] = element; 
       }
     }
+    void fill(T element, unsigned size)
+    {
+      resize(size);
+      fill(element);
+    }
+
+
+
 
     void print()
     {
@@ -228,11 +238,11 @@ class Vector
     Vector(std::initializer_list<T> l)
     {
       shrink(l.size());
-      unsigned i = 0; 
+      T * temp = data__; 
       for ( auto &value : l) 
       {
-        this->data__[i] = value;
-        i++;
+        *(temp) = value;
+        ++temp; 
       }
       this->size__ = l.size(); 
     }
@@ -280,11 +290,11 @@ class Vector
 
     T & operator [] (unsigned i)
     {
-      if ( i < size__)
+      if ( i < size__ && i >= 0)
       {
         return data__[i];
       }
       CERR("In Vector.[]: Index i is out of bound. i: " << i)
-      throw DEFAULTSTEPSIZE; 
+      throw indexOutOfBoundsException; 
     }
 };
