@@ -13,6 +13,6 @@ int main ()
   f.InitNAgentsToIndex(10, 53, 54);
   f.InitNAgentsToIndex(20, 6, 7);
   f.InitNAgentsToIndex(10, 2, 70);
-  f.TUI_LOOP(); 
+  f.TUI_LOOP(50); 
    
 }

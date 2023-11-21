@@ -80,12 +80,12 @@ public:
     ++iteration;
   }
 
-  void TUI_LOOP()
+  void TUI_LOOP(unsigned updateRateInMillsecs = 1000)
   {
     for (;;)
     {
       update();
-      Sleep(1000);
+      Sleep(updateRateInMillsecs);
 
       // clear terminal
       clearScreen();
