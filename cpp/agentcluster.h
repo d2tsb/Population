@@ -49,7 +49,7 @@ public:
     {
       res += agents[i].getGrade();
     }
-    return res / (this->getQuantity() == 0) ? 1 : this->getQuantity();
+    return res / ((this->getQuantity() == 0) ? 1 : this->getQuantity());
   }
 
   void remove(unsigned index);
@@ -78,7 +78,10 @@ public:
   {
     this->agents.pop_back();
   }
-
+  bool empty()
+  {
+    return agents.empty(); 
+  }
 
   unsigned amountOfAgents()
   {

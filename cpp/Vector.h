@@ -223,7 +223,10 @@ class Vector
       fill(element);
     }
 
-
+    bool empty()
+    {/*returns true if the vector is empty*/
+      return this->size__ == 0; 
+    }
 
 
     void print()

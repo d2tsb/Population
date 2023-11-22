@@ -108,11 +108,11 @@ class Agent //typical Agent in the Population Game
 
     int pos_x = 0; 
     int pos_y = 0; 
-    void incrementGrade__()
-    {
-      if (canIncrementGrade) 
-        Grade == HIGHESTGRADE ? 0 : ++Grade; 
-    }
+    // void incrementGrade__()
+    // {
+    //   if (canIncrementGrade) 
+    //     Grade == HIGHESTGRADE ? Grade = 1 : ++Grade; 
+    // }
 
     DIRECTION last_direction = NO_DIRECTION; 
 
@@ -120,20 +120,24 @@ class Agent //typical Agent in the Population Game
   public: 
     void incrementGrade(float OtherGrade, DIRECTION lastDirection)
     {
-      if (NO_DIRECTION)
+      if (last_direction == NO_DIRECTION)
       {
         return; //do nothing
       }
       if ( canIncrementGrade )
       {
+      back_:
         /*incrementGrade and update*/
-        float tempGrade = this->Grade;  
+        /*
+        Float tempGrade = this->Grade;  
         tempGrade += OtherGrade; 
-        tempGrade = Grade/tempGrade; 
+        //tempGrade = (float)Grade/(float)tempGrade; 
+        tempGrade/=2; 
+        */
 
         DIRECTION last_direction_temp = last_direction == NO_DIRECTION ? dice(AgentDistribution()) : last_direction;
 
-        if ( tempGrade > 0) //this has the stronger grade
+        if ( OtherGrade > this->Grade) //this has the stronger grade
         {
           //increment the probability of the last direction to
           switch(last_direction_temp)
@@ -158,13 +162,7 @@ class Agent //typical Agent in the Population Game
           }
         }
         else { //other has the stronger grade
-          float tempGrade = this->Grade;  
-          tempGrade += OtherGrade; 
-          tempGrade = Grade/tempGrade; 
-          if ( tempGrade > 0) //this has the stronger grade
-          {
-            //increment the probability of the last direction to
-            switch(last_direction_temp)
+           switch(last_direction_temp)
             {
               case NORTH: 
                 ad.north_prob -= RANDSTEPSIZE; 
@@ -184,8 +182,10 @@ class Agent //typical Agent in the Population Game
                 ad.normalize();
                 break;
             }
-          }
         }
+        this->Grade++; 
+        Grade > HIGHESTGRADE ? Grade = 0 : 6; 
+        return; 
       }
       else {
         if ( stepsLeftToBeAbletoElevate > 0)
@@ -194,6 +194,7 @@ class Agent //typical Agent in the Population Game
         }
         else {
           canIncrementGrade = true; 
+          goto back_; 
         }
       }
 

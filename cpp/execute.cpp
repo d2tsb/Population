@@ -15,6 +15,7 @@ int main ()
   f.InitNAgentsToIndex(20, 6, 7);
   f.InitNAgentsToIndex(10, 2, 40);
   f.InitNAgentsToIndex(49, 34, 25);
-  f.TUI_LOOP(200); 
+  f.InitNAgentsToIndex(400, 49, 49);
+  f.TUI_LOOP(50); 
    
 }

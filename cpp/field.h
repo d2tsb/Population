@@ -83,9 +83,9 @@ public:
   void TUI_LOOP(unsigned updateRateInMillsecs = 1000)
   {
     GUI x; 
-    x.emptyCanvas();
-    clearScreenToBottom();
-    x.clearAll();
+    //x.emptyCanvas();
+    clearScreenToTop();
+    //x.clearAll();
     x.emptyCanvas();
     for (;;)
     {
