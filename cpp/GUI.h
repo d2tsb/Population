@@ -121,8 +121,9 @@ public:
           ++count; 
         }
         //result << "\x1b[38;2;20;" << v[i][j].amountOfAgents() * 80 << ";90m";
-        result << "\x1b[38;2;20;" << ((unsigned)average / 50 ) + 20 << ";90m";
-        //result << "\x1b[38;2;" <<  v[i][j].amountOfAgents() * 80  << ";" << (unsigned) v[i][j].getGradeMedian() * 80 << ";90m";
+        //result << "\x1b[38;2;20;" << ((unsigned)average / 50 ) + 20 << ";90m";
+        result << "\x1b[38;2;" << v[i][j].getQuantity() *20 << ";" << ((unsigned)average / 50 ) + 20 << ";30m";
+                //result << "\x1b[38;2;" <<  v[i][j].amountOfAgents() * 80  << ";" << (unsigned) v[i][j].getGradeMedian() * 80 << ";90m";
         //result << (unsigned )v[i][j].amountOfAgents();
         //result << '_';
         result << "#";
@@ -133,6 +134,7 @@ public:
     result << '\n' <<  "\x1b[38;2;255;255;255m" << "Average Grade: is " << (average_all / (count));
     printf(result.str().c_str());
     resetColor(); 
+    hideCursor(); 
   }
   void LprintField(Vector<Vector<AgentCluster>> v)
   {

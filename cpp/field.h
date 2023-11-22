@@ -87,6 +87,7 @@ public:
     clearScreenToTop();
     //x.clearAll();
     x.emptyCanvas();
+    x.hideCursor();
     for (;;)
     {
       update();
