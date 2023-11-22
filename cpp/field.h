@@ -83,11 +83,14 @@ public:
   void TUI_LOOP(unsigned updateRateInMillsecs = 1000)
   {
     GUI x; 
+    Stopwatch s; 
     //x.emptyCanvas();
     clearScreenToTop();
     //x.clearAll();
     x.emptyCanvas();
     x.hideCursor();
+    s.reset();  
+    s.start(); 
     for (;;)
     {
       update();
@@ -105,7 +108,7 @@ public:
       //     std::cout << std::endl;
       //   }
       //   std::cout << std::endl;
-      x.printField(this->Field);
+      x.printField(this->Field, s);
       // x.LprintField(this->Field);
     }
     //TBD

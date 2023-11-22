@@ -31,6 +31,11 @@ class Stopwatch
             std::cout << milliseconds.count() << "ms\n";
         }
  
+        float getMilliseconds()
+        {
+          auto milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(finish_ - start_);
+          return milliseconds.count(); 
+        }
         void reset () 
         {
             std::chrono::_V2::system_clock::time_point now = std::chrono::high_resolution_clock::now();

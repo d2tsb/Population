@@ -67,9 +67,11 @@ struct AgentDistribution
    
 std::random_device rd;
 std::mt19937 gen(rd());
+int global_seed = 0; 
 void seedGenerator()
 {
-  gen.seed(time(NULL));
+  global_seed = time(NULL);
+  gen.seed(global_seed);
 }
 
 DIRECTION dice (AgentDistribution ad)
@@ -184,7 +186,7 @@ class Agent //typical Agent in the Population Game
             }
         }
         this->Grade++; 
-        Grade > HIGHESTGRADE ? Grade = 0 : 6; 
+        Grade > HIGHESTGRADE ? Grade = 1 : 6; 
         return; 
       }
       else {
@@ -243,6 +245,7 @@ class Agent //typical Agent in the Population Game
     {
       //Grade = 1; 
       --Grade < 1 ? Grade++ : 0;  
+      //Grade = 1;
       //canIncrementGrade = 0; 
       //stepsLeftToBeAbletoElevate = 5; 
       ad = AgentDistribution(); 

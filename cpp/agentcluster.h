@@ -58,6 +58,21 @@ public:
     //std::cout << "I m made." << std::endl;
   }
 
+  unsigned peak()
+  {
+    unsigned tempGrade = 0; 
+    for (unsigned i = 0; i < agents.getSize(); i++)
+    {
+      const unsigned grade = agents[i].getGrade();
+      if ( grade > tempGrade) 
+      {
+        tempGrade = grade; 
+      }
+    }
+    return tempGrade; 
+  }
+
+
   AgentCluster(const unsigned N)
   {
     try

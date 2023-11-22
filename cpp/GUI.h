@@ -2,6 +2,7 @@
 #include "TUI.h"
 #include <sstream>
 #include "agentcluster.h"
+#include "stopwatch.h"
 
 class GUI
 {
@@ -104,9 +105,10 @@ public:
     }
     printf(result.str().c_str());
   }
-  void printField(Vector<Vector<AgentCluster>>& v)
+  void printField(Vector<Vector<AgentCluster>>& v, Stopwatch & sw)
   {
     float average_all = 0, count = 0; 
+    unsigned peakGrade = 0; 
     std::ostringstream result;
     //result << "\x1b[38;2;120;0;90m";
     for (unsigned i = 0; i < x_dim; i++)
@@ -114,15 +116,18 @@ public:
       result << "\x1b[" << i << ";" << 0 << "f";
       for (unsigned j = 0; j < y_dim; j++)
       {
+
         const float average = v[i][j].getGradeMedian();
         if ( !v[i][j].empty() )
         {
           average_all += average; 
           ++count; 
+          if ( v[i][j].peak() > peakGrade)
+            peakGrade = v[i][j].peak(); 
         }
         //result << "\x1b[38;2;20;" << v[i][j].amountOfAgents() * 80 << ";90m";
         //result << "\x1b[38;2;20;" << ((unsigned)average / 50 ) + 20 << ";90m";
-        result << "\x1b[38;2;" << v[i][j].getQuantity() *20 << ";" << ((unsigned)average / 50 ) + 20 << ";30m";
+        result << "\x1b[38;2;" << v[i][j].getQuantity() *30 << ";" << ((unsigned)average / 50 ) + 20 << ";30m";
                 //result << "\x1b[38;2;" <<  v[i][j].amountOfAgents() * 80  << ";" << (unsigned) v[i][j].getGradeMedian() * 80 << ";90m";
         //result << (unsigned )v[i][j].amountOfAgents();
         //result << '_';
@@ -131,7 +136,11 @@ public:
       }
     }
     //ignoring 0 division error.
-    result << '\n' <<  "\x1b[38;2;255;255;255m" << "Average Grade: is " << (average_all / (count));
+    result << "\x1b[" << x_dim << ";" << 0 << "f"<<  "\x1b[38;2;255;255;255m" << "Average Grade is: " << (average_all / (count)) << "               ";
+    sw.finish(); 
+    result << "\x1b[" << x_dim + 1 << ";" << 0 << "f"<<  "\x1b[38;2;255;255;255m" << "Time taken (approx): " << sw.getMilliseconds()  << "ms. ";
+    result << "\x1b[" << x_dim + 2 << ";" << 0 << "f"<<  "\x1b[38;2;255;255;255m" << "Peak Grade: " << peakGrade << ".";
+
     printf(result.str().c_str());
     resetColor(); 
     hideCursor(); 

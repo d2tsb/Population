@@ -1,5 +1,4 @@
 #include "GUI.h"
-#include "stopwatch.h"
 
 int main () 
 {
