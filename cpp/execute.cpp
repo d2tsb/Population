@@ -1,6 +1,5 @@
 #include "field.h"
 
-
 int main () 
 {
   seedGenerator(); 
