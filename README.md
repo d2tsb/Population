@@ -32,11 +32,14 @@ will have more impact/ influence on the direction, in which the statistically lo
 being intends to go. 
 It should show that probability is not probability, since the outcome and generation,
 vary from time to time, hardly depending on the seed (time) set.
-Try it out on your, and run it a couple of times, to get an own picture.
+Try it out on your own, and run it a couple of times, to get an own picture.
 
 ## Features:
 It features a terminal UI written in ANSI-ESCAPE. 
 The TUI shows the current state of the Agentclusters.
+
+Lightweight and efficient selfwritten container datastructure 'Vector.h', 
+which replaces the <vector> stdlib.
 
 ## Details:
 the project was developed under my old git account,
