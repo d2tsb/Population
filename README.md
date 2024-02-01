@@ -1,14 +1,22 @@
 # Population
 This is a generative algo, with agents moving on a 2D Plane. 
 It features probabilistical and chaotic mapping.
-Here's some footage of how it looks, when executed in a terminal:
+Here's some footage of how it looks, when executed in a terminal 
+(loading the footage can be quite slow):
 
+
+![alt text](https://raw.githubusercontent.com/d2tsb/gifs/main/population/execution.gif)
 
 ## the Plane:
-The plane is a datastructure which contains a stack of agents (the so called AgentClusters) at each point. 
+The plane is a datastructure which contains a stack of agents (the so called AgentClusters) at each point of a 2D surface. 
 It can be empty, which represents that no agent is currently at that 
 single point. The plane is initialized by several agents at each points.
 
+## the AgentCluster:
+It's a container, which represents a point in space, at which 0..N* agents are currently at.
+In a Term UI its state get printed:
+- a more reddish tone indicates that the cluster is visited by a lot of agents.
+- a more greenish tone indicates that the grade is higher
 
 ## the Agent:
 The agent increases or decreases its probability to move into a direction, 
@@ -28,3 +36,11 @@ Try it out on your, and run it a couple of times, to get an own picture.
 
 ## Features:
 It features a terminal UI written in ANSI-ESCAPE. 
+
+## Details:
+the project was developed under my old git account,
+some time ago, not knowing .gitignore existed.
+The commits contain some binaries, which makes it 
+impossible to continue the project, since its 
+size bloated to < 500mb. This project may be continued under 
+another name. Updates might come in future.
