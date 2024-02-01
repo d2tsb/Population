@@ -37,6 +37,7 @@ Try it out on your own, and run it a couple of times, to get an own picture.
 ## Features:
 It features a terminal UI written in ANSI-ESCAPE. 
 The TUI shows the current state of the Agentclusters.
+It also displays the average grade count of the agents.
 
 Lightweight and efficient selfwritten container datastructure 'Vector.h', 
 which replaces the <vector> stdlib.
@@ -46,5 +47,5 @@ the project was developed under my old git account,
 some time ago, not knowing .gitignore existed.
 The commits contain some binaries, which makes it 
 impossible to continue the project, since its 
-size bloated to < 500mb. This project may be continued under 
+size bloated to 500mb+. This project may be continued under 
 another name. Updates might come in future.
