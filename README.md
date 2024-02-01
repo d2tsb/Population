@@ -14,7 +14,7 @@ single point. The plane is initialized by several agents at each points.
 
 ## the AgentCluster:
 It's a container, which represents a point in space, at which 0..N* agents are currently at.
-In a Term UI its state get printed:
+In a Term UI its state gets printed:
 - a more reddish tone indicates that the cluster is visited by a lot of agents.
 - a more greenish tone indicates that the grade is higher
 
@@ -30,8 +30,9 @@ changing their course, or statistical drift. People which are rarely bumping
 into other people, have a lower grade. Those which have a higher grade, 
 will have more impact/ influence on the direction, in which the statistically lower grade
 being intends to go. 
-It should show that probability is not probability, since the outcome and generation,
-vary from time to time, hardly depending on the seed (time) set.
+It should show that idd variables manipulated by 
+some conditions being set, cannot be recognized by white noise characteristics. The outcome and generation,
+vary drastically from time to time, depending on the seed (time) set.
 Try it out on your own, and run it a couple of times, to get an own picture.
 
 ## Features:
